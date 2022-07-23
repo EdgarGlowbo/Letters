@@ -20,7 +20,7 @@ const useFetch  = (q) => {
         }                     
       }
       getData();      
-    }, []);  
+    });  
   return { data }
 }
 

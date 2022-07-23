@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
+import { ReactComponent as XDeleteBtn } from "./XDeleteBtn.svg"
 
-const LetterList = ({ letters }) => {
-
+const LetterList = ({ letters, handleDelete }) => {  
   return ( 
     <ul className="m-entries">    
       {
@@ -13,17 +13,18 @@ const LetterList = ({ letters }) => {
                   <h2 className="c-text__h2 c-letter-title">{ letter.title }</h2>
                     <button 
                       className="c-entry__btn c-entry__dlt-btn"
-                      // onClick={() => {handleDelete(letter.id)}}
+                      onClick={() => {
+                        handleDelete(letter.id);                        
+                      }}
                       type="button"
-                    >
-                    x
+                    >                    
+                      <XDeleteBtn />                      
                     </button>
                   </div>              
-                  <p className="c-text__p c-letter__preview">{ letter.blogPrev }</p>
+                  <p className="c-text__p c-letter__preview">{ letter.synopsis }</p>
                 </div>                
               </Link>
-            </li> 
-          
+            </li>           
         ))
       }                  
     </ul>
