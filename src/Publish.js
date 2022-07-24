@@ -9,15 +9,15 @@ const Publish = ({ handleClose, title, body }) => {
   const [author, setAuthor] = useState('');
   const [synopsis, setSynopsis] = useState('');
   const navigate = useHistory();
-  const maxLengthSynopsis = 380;
+  const maxLengthSynopsis = 380;  
   const handleKeyUp = (e) => {
     const current = e.target.value.length;
     setWordCount(current);
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const date = new Date();
-    const formatedDate = format(date, 'PPp');
+    const baseDate = new Date();
+    const formatedDate = format(baseDate, 'PPp');
     const letterObj = {
       author: author,
       synopsis: synopsis,
@@ -31,7 +31,7 @@ const Publish = ({ handleClose, title, body }) => {
       id: docRef.id
     });    
     handleClose(e, e.type);
-    navigate.push('/');
+    navigate.push('/');    
   }
   return (
     <div
@@ -84,7 +84,7 @@ const Publish = ({ handleClose, title, body }) => {
         </div>
       </form>
     </div> 
-  );
+  );  
 }
  
 export default Publish;

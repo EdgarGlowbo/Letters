@@ -36,7 +36,7 @@ const Create = () => {
               value={ title }
               onChange={(e) => { setTitle(e.target.value) }}
             />
-            <button className="c-save-btn c-btn" type="button">
+            <button className="c-save-btn c-btn" type="button" disabled>
               <DiskIcon />
             </button>          
           </div>

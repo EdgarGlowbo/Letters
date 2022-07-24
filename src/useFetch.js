@@ -1,13 +1,21 @@
 import { useState, useEffect } from "react";
-import { getDoc, getDocs } from "firebase/firestore";
+import 
+{ 
+  getDoc, getDocs, query,
+  orderBy, limit
+} from "firebase/firestore";
 
 const useFetch  = (q) => {
-  const [data, setData] = useState(null);      
+  const [data, setData] = useState(null);
+  const [baseDate, setBaseDate] = useState(null);
   
     useEffect(() => {          
       const getData = async () => {              
         if (q.type === "collection") {
-          const querySnapshot = await getDocs(q);          
+          const queryRequest = query(q, orderBy("createdAt", "desc"));
+          // const firstDocQuery = query(q, orderBy("createdAt", "desc"), limit(1));
+          // const firstDocQuerySnapshot = await getDocs(firstDocQuery, orderBy("createdAt", "desc"), limit(1));          
+          const querySnapshot = await getDocs(queryRequest);     
           const data = [];  
           querySnapshot.forEach(doc => {        
             data.push(doc.data());

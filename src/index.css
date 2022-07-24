@@ -233,6 +233,14 @@ textarea, input {
 .c-entry__dlt-btn svg {
   filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(29deg) brightness(100%) contrast(101%);
 }
+
+/* Fix pointer events with svg clicking only last element */
+.c-entry__dlt-btn  svg {
+  pointer-events: none;
+}
+.c-entry__dlt-btn > * {
+  pointer-events: all;
+}
 @media only screen and (max-width: 475px){
   #root {
     display: flex;
