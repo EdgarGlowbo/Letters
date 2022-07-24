@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Letters/static/css/main.17eba61f.css",
+    "main.js": "/Letters/static/js/main.bd0b4c03.js",
+    "index.html": "/Letters/index.html",
+    "static/media/LetterIcon.svg": "/Letters/static/media/LetterIcon.5fc52d6cd202272fd8840295e7a2ed3d.svg",
+    "static/media/XDeleteBtn.svg": "/Letters/static/media/XDeleteBtn.28ea6c97378a85b6eba67eeb44932ff6.svg",
+    "static/media/DiskIcon.svg": "/Letters/static/media/DiskIcon.b409645d6b2c2636da92a58c3af6673f.svg",
+    "main.17eba61f.css.map": "/Letters/static/css/main.17eba61f.css.map",
+    "main.bd0b4c03.js.map": "/Letters/static/js/main.bd0b4c03.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17eba61f.css",
+    "static/js/main.bd0b4c03.js"
+  ]
+}
