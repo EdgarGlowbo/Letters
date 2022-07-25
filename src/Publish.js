@@ -22,7 +22,8 @@ const Publish = ({ handleClose, title, body }) => {
       author: author,
       synopsis: synopsis,
       content: body,
-      createdAt: formatedDate,      
+      createdAt: formatedDate,
+      dateInMs: baseDate.getTime(),
       title: title,
     }    
     const colRef = collection(db, 'Letters');
@@ -31,7 +32,7 @@ const Publish = ({ handleClose, title, body }) => {
       id: docRef.id
     });    
     handleClose(e, e.type);
-    navigate.push('/');    
+    navigate.push('/Letters/');    
   }
   return (
     <div

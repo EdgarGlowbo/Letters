@@ -11,13 +11,13 @@ function App() {
         <div className="content">
           <Navbar />
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/Letters/">
               <Home />
             </Route>
-            <Route path="/create">              
+            <Route path="/Letters/create">              
               <Create />              
             </Route>
-            <Route path="/letter/:id">
+            <Route path="/Letters/letter/:id">
               <LetterContent />
             </Route>            
           </Switch>          

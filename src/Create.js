@@ -57,6 +57,7 @@ const Create = () => {
             onChange={(e) => { setBody(e.target.value) }}
             required
             autoFocus
+            spellCheck="false"
           >
           </textarea>
         </div>      
