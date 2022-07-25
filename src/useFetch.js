@@ -12,7 +12,7 @@ const useFetch  = (q) => {
     useEffect(() => {          
       const getData = async () => {              
         if (q.type === "collection") {
-          const queryRequest = query(q, orderBy("createdAt", "desc"));
+          const queryRequest = query(q, orderBy("createdAt", "asc"));
           // const firstDocQuery = query(q, orderBy("createdAt", "desc"), limit(1));
           // const firstDocQuerySnapshot = await getDocs(firstDocQuery, orderBy("createdAt", "desc"), limit(1));          
           const querySnapshot = await getDocs(queryRequest);     
@@ -27,8 +27,9 @@ const useFetch  = (q) => {
           setData(data);
         }                     
       }
-      getData();      
-    });  
+      getData();
+      console.log('Pls stop')      
+    }, []);  
   return { data }
 }
 
