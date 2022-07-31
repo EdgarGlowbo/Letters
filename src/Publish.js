@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { format } from "date-fns";
-import { db } from "./firebaseConfig";
+import { db, auth } from "./firebaseConfig";
 import { collection, addDoc, updateDoc } from "firebase/firestore";
 import { useHistory } from "react-router-dom";
 
 const Publish = ({ handleClose, title, body }) => {
   const [wordCount, setWordCount] = useState(0);
-  const [author, setAuthor] = useState('');
+  const [author, setAuthor] = useState(auth.currentUser.displayName);
   const [synopsis, setSynopsis] = useState('');
   const navigate = useHistory();
   const maxLengthSynopsis = 380;  
@@ -47,8 +47,7 @@ const Publish = ({ handleClose, title, body }) => {
           <span className="c-author c-author__span">Author:</span>
           <input
               className="c-author__input c-input"
-              required
-              autoFocus            
+              required                          
               value={ author }
               onChange={(e) => { setAuthor(e.target.value) }}
           />
@@ -66,6 +65,7 @@ const Publish = ({ handleClose, title, body }) => {
             value={ synopsis }
             onChange={(e) => { setSynopsis(e.target.value) }}
             onKeyUp={(e) => { handleKeyUp(e) }}
+            autoFocus
           >
           </textarea>                
         </div>

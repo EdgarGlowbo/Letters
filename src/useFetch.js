@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
 import 
 { 
-  getDoc, getDocs, query,
-  orderBy
+  getDoc, query,
+  orderBy, onSnapshot
 } from "firebase/firestore";
 
-const useFetch = (q, distanceLastEntry) => {
+const useFetch = (ref) => {
   const [data, setData] = useState(null);    
     useEffect(() => {          
       const getData = async () => {              
-        if (q.type === "collection") {
-          const queryRequest = query(q, orderBy("dateInMs", "desc"));                  
-          const querySnapshot = await getDocs(queryRequest);     
-          const data = [];  
-          querySnapshot.forEach(doc => {        
-            data.push(doc.data());                        
-          });        
-          setData(data);
-          distanceLastEntry(data[0].dateInMs);
-        } else if (q.type === "document") {
-          const docSnapshot = await getDoc(q);
+        if (ref.type === "collection") {
+          const q = query(ref, orderBy("dateInMs", "desc"));                  
+          const unsubscribe = onSnapshot(q, querySnapshot => {
+            const data = [];
+            querySnapshot.forEach(doc => {
+                data.push(doc.data());
+            });
+            setData(data);            
+          });                                                               
+        } else if (ref.type === "document") {
+          const docSnapshot = await getDoc(ref);
           const data = docSnapshot.data();          
           setData(data);
         }                     

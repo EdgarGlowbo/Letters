@@ -6,11 +6,15 @@ const Create = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const togglePublishWdw = () => { setIsOpen(!isOpen) };
+  const togglePublishWdw = () => { 
+    setIsOpen(!isOpen);
+    document.querySelector('.content').classList.toggle('l-auth-and-syn__bckgr');
+  };
   const handleClose = (e, type) => {
     const isCancelBtn = e.target.classList.contains('c-auth-and-syn__cancel');
     const isPublishForm = e.target.classList.contains('l-author-and-synopsis');
     const isBackground = e.target.classList.contains('l-auth-and-syn__bckgr');
+    
     if (isCancelBtn || isBackground || (isPublishForm && type === 'submit')) {
       togglePublishWdw() 
     }   

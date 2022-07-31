@@ -129,6 +129,14 @@ textarea, input {
   width: calc((563em / 16) - (96em / 16));
   padding: 5%;  
 }
+.c-add-comment__textarea {
+  width: 100%;  
+}
+.c-add-comment__textarea:focus {
+  border: solid 1px #333;
+  border-radius: 5px;
+  padding: 5px;
+}
 .c-content-textarea:focus {
   border: none;
 }
@@ -163,8 +171,8 @@ textarea, input {
   background-color: rgba(0,0,0,0.5);
   position: fixed;
   height: 100vh;
-  width: 90vw;
-  z-index: 1;
+  width: 90vw;  
+  z-index: 1;  
 }
 .l-author-and-synopsis {
   position: relative;
@@ -218,7 +226,7 @@ textarea, input {
 .c-auth-and-syn__cancel {
   border-left: solid 1px;
 }
-.c-entry__dlt-btn {
+.c-entry__dlt-btn, .c-comment__dlt-btn, .c-comment__like-btn {
   display: flex;
   border-radius: 50%;
   height: 18px;
@@ -231,16 +239,122 @@ textarea, input {
   align-items: center;
   cursor: pointer;
 }
-.c-entry__dlt-btn svg {
-  filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(29deg) brightness(100%) contrast(101%);
-}
-
-/* Fix pointer events with svg clicking only last element */
-.c-entry__dlt-btn  svg {
+.c-entry__dlt-btn svg, 
+.c-comment__dlt-btn svg,
+.c-comment__like-btn svg
+{
+  /* Fix pointer events with svg clicking only last element */
   pointer-events: none;
 }
-.c-entry__dlt-btn > * {
+.c-entry__dlt-btn svg,
+.c-comment__dlt-btn svg {
+  filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(29deg) brightness(100%) contrast(101%);
+}
+.c-entry__dlt-btn > *,
+.c-comment__dlt-btn > *, 
+.c-comment__like-btn > *
+{
   pointer-events: all;
+}
+.l-comment__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.c-comment__distance {
+  margin-left: 0.75em;
+}
+.l-comment__footer {
+  margin-top: 0.5em;
+  display: flex;
+}
+.l-comment__footer--unavailable {
+  display: none;
+}
+.c-comment__distance, .c-comment__uname {
+  font-size: 0.9em;
+}
+.l-comment__container {
+  padding: 10px;
+}
+.c-comment__distance--gray {
+  color: #aaa;
+}
+.c-comment__uname {
+  font-weight: bold;
+}
+.c-comment__like-btn {
+  background-color: transparent;
+  height: 32px;
+  width: 32px;
+  padding: 0;     
+}
+.c-heart-shape {
+  background-color: #FF5252;  
+  height: 32px;
+  width: 32px;  
+	clip-path: path("M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m5.726-20.583c-2.203 0-4.446 1.042-5.726 3.238-1.285-2.206-3.522-3.248-5.719-3.248-3.183 0-6.281 2.187-6.281 6.191 0 4.661 5.571 9.429 12 15.809 6.43-6.38 12-11.148 12-15.809 0-4.011-3.095-6.181-6.274-6.181");
+	transform: scale(1);
+}
+.c-heart-shape--liked {  
+  clip-path: path("M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z");   
+}
+.m-add-comment {
+  border-bottom: solid 1px #333;
+  padding: 10px;
+}
+.l-add-comment__bottom-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.c-add-comment__cancel-btn, .c-add-comment__submit-btn {
+  border-radius: 3px;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+.c-add-comment__submit-btn {
+  background-color: #f1356d;
+  color: #F0F0F0;
+  font-weight: bold;
+  margin-left: 3px;
+}
+.o-display-name {
+  position: absolute;
+  margin: 0 auto;    
+  background-color: #F0F0F0;
+  border: none;
+  padding: 15px;
+  border-radius: 5px;
+  top: 35%;  
+  left: 50%; 
+  transform: translate(-50%, -50%);  
+}
+.c-display-name__label {
+  font-size: 1em;
+  margin: 5px 0;
+}
+.c-display-name__input {
+  padding: 5px;
+}
+.content--dark-bckgr {
+  background-color: rgba(0,0,0,0.5);
+  position: fixed;
+  height: 100vh;
+  width: 90vw;  
+  z-index: 1;
+}
+.c-display-name__btn {
+  border: none;
+  cursor: pointer;
+  background-color: #f1356d;
+  color: white;
+  border-radius: 3px;
+  margin-left: 5px;
+  padding: 5px;
+  font-weight: bold;
 }
 @media only screen and (max-width: 475px){
   #root {
@@ -252,7 +366,7 @@ textarea, input {
     margin: 0;
     width: 100%;
   }
-	.c-content-textarea {  
+	.c-content-textarea, .c-add-comment__textarea {  
     box-sizing: border-box;
     height: 100%;
     width: 100%;
@@ -266,8 +380,9 @@ textarea, input {
   .l-author-and-synopsis {
     width: 80vw;        
   }
-  .l-auth-and-syn__bckgr {        
+  .l-auth-and-syn__bckgr, .content--dark-bckgr {        
     height: 100vh;
     width: 100vw;    
   }
+
 }
