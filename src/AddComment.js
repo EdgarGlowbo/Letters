@@ -1,20 +1,20 @@
 import { auth } from "./firebaseConfig";
-import { addDoc, updateDoc } from "firebase/firestore";
+import { addDoc } from "firebase/firestore";
 import { useState } from "react";
 
 const AddComment = ({ commentsColRef }) => {
-  const [comment, setComment] = useState('');    
+  const [comment, setComment] = useState('');
+      
   const handleSubmit = async e => {
     e.preventDefault();
-    const docRef = await addDoc(commentsColRef, {
+    const date = new Date();
+    const dateInMs = date.getTime();    
+    await addDoc(commentsColRef, {
       author: auth.currentUser.displayName,
       comment: comment,      
-      dateInMs: new Date().getTime(),
-    });
-    setComment('');
-    await updateDoc(docRef, {
-      id: docRef.id
-    });    
+      dateInMs: dateInMs,      
+    });        
+    setComment('');    
   };
   return (
     <form className="m-add-comment" onSubmit={handleSubmit}>

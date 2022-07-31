@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import { db } from "./firebaseConfig";
-import { doc, collection, getDoc } from "firebase/firestore";
+import { doc, collection } from "firebase/firestore";
 import useFetch from "./useFetch";
 import Comments from './Comments';
 import AddComment from './AddComment';
@@ -9,9 +9,8 @@ import AddComment from './AddComment';
 const LetterContent = () => {
   const { id } = useParams();
   const { data:letter } = useFetch(doc(db, "Letters", id));
-  const commentsColRef = collection(db, "Letters", id, "Comments");  
+  const commentsColRef = collection(db, "Letters", id, "Comments");    
   const { data:comments } = useFetch(commentsColRef);
-
   return ( 
     <React.Fragment>
       <div className="l-letter-container">
@@ -28,7 +27,7 @@ const LetterContent = () => {
       </div>
       <div className="l-comment-section">
         <AddComment commentsColRef={commentsColRef} />
-        {comments && <Comments comments={comments} />}
+        {comments && <Comments comments={comments} />}        
       </div>
     </React.Fragment>
          

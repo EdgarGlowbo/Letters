@@ -3,7 +3,8 @@ import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 
 const DisplayName = ( { setIsNewUser }) => {
-  const [displayName, setDisplayName] = useState('');  
+  const [displayName, setDisplayName] = useState('');
+  document.querySelector('.content').classList.add('content--dark-bckgr');
   const setDisplayNameInUser = e => {
     e.preventDefault();
     updateProfile(auth.currentUser, {

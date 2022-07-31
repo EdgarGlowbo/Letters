@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import 
 { 
   getDoc, query,
-  orderBy, onSnapshot
+  orderBy, onSnapshot, updateDoc
 } from "firebase/firestore";
 
 const useFetch = (ref) => {
@@ -13,7 +13,10 @@ const useFetch = (ref) => {
           const q = query(ref, orderBy("dateInMs", "desc"));                  
           const unsubscribe = onSnapshot(q, querySnapshot => {
             const data = [];
-            querySnapshot.forEach(doc => {
+            querySnapshot.forEach(async doc => {
+                if (!doc.data().id) {                  
+                  await updateDoc(doc.ref, { id: doc.id });
+                }
                 data.push(doc.data());
             });
             setData(data);            

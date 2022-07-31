@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { format } from "date-fns";
 import { db, auth } from "./firebaseConfig";
-import { collection, addDoc, updateDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useHistory } from "react-router-dom";
 
 const Publish = ({ handleClose, title, body }) => {
@@ -27,10 +27,7 @@ const Publish = ({ handleClose, title, body }) => {
       title: title,
     }    
     const colRef = collection(db, 'Letters');
-    const docRef = await addDoc(colRef, letterObj);
-    await updateDoc(docRef, {
-      id: docRef.id
-    });    
+    await addDoc(colRef, letterObj);     
     handleClose(e, e.type);
     navigate.push('/Letters/');    
   }

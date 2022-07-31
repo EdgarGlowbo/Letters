@@ -48,6 +48,7 @@ body {
   margin: 3px 5px;
   margin-top: 0;
   padding: 10px;
+  position: relative;
 }
 .l-letter-container {
   margin: 10px;
@@ -85,6 +86,9 @@ h1 {
 }
 .c-entry__dlt-btn {
   margin: 3px;
+  position: absolute;
+  top: 0;  
+  right: 0;   
 }
 .c-letter-title {
   color: #f1356d;
@@ -130,12 +134,12 @@ textarea, input {
   padding: 5%;  
 }
 .c-add-comment__textarea {
-  width: 100%;  
+  width: 100%;
+  padding: 5px;  
 }
 .c-add-comment__textarea:focus {
   border: solid 1px #333;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 5px;  
 }
 .c-content-textarea:focus {
   border: none;
@@ -321,7 +325,7 @@ textarea, input {
   font-weight: bold;
   margin-left: 3px;
 }
-.o-display-name {
+.o-display-name, .o-dlt-letter-warning {
   position: absolute;
   margin: 0 auto;    
   background-color: #F0F0F0;
@@ -330,9 +334,10 @@ textarea, input {
   border-radius: 5px;
   top: 35%;  
   left: 50%; 
-  transform: translate(-50%, -50%);  
+  transform: translate(-50%, -50%); 
+  text-align: center; 
 }
-.c-display-name__label {
+.c-display-name__label, .c-dlt-letter-warning__label {
   font-size: 1em;
   margin: 5px 0;
 }
@@ -346,7 +351,9 @@ textarea, input {
   width: 90vw;  
   z-index: 1;
 }
-.c-display-name__btn {
+.c-display-name__btn,
+.c-dlt-letter-warning__btn-confirm,
+.c-dlt-letter-warning__btn-cancel {
   border: none;
   cursor: pointer;
   background-color: #f1356d;
@@ -355,6 +362,16 @@ textarea, input {
   margin-left: 5px;
   padding: 5px;
   font-weight: bold;
+}
+.l-dlt-letter-warning__btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.c-dlt-letter-warning__btn-confirm,
+.c-dlt-letter-warning__btn-cancel {
+  width: 49%;
+  padding: 1%;
 }
 @media only screen and (max-width: 475px){
   #root {
@@ -383,6 +400,9 @@ textarea, input {
   .l-auth-and-syn__bckgr, .content--dark-bckgr {        
     height: 100vh;
     width: 100vw;    
+  }
+  .o-display-name, .o-dlt-letter-warning {
+    width: 66vw;
   }
 
 }
